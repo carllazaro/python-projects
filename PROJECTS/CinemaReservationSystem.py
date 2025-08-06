@@ -63,7 +63,8 @@ def ticketreservation():
     while True:
         confirm = input("Confirm reservation [Y/N]: ").upper()
         if confirm == "Y":
-            print("Reservation confirmed. Thank you!")
+            print("Reservation confirmed. Thank you!\n")
+            dashboard()
             break
         elif confirm == "N":
             ticketreservation()
@@ -88,25 +89,22 @@ def dashboard():
         print("Theater: 4DX")
         print(f"City: {cities[random_city]}")
         print(f"Date: {random_date}")
-
+    
+    print("--------------------------")
+    select = ["Reserve a Ticket", "Movies", "Cinemas", "Trailers", "Events & Promos"]
+    for selection_index in select:
+        print(f"[{select.index(selection_index) + 1}] {selection_index}")
+    while True:
+        pick = input("> ")
+        match pick:
+            case "1":
+                ticketreservation()
+            case "2":
+                print("Movies")
+            case "3":
+                print("Cinemas")
+            case "4":
+                print("Trailers")
+            case "5":
+                print("Events & Promos")
 dashboard()
-print("--------------------------")
-select = ["Reserve a Ticket", "Movies", "Cinemas", "Trailers", "Events & Promos"]
-for selection_index in select:
-    print(f"[{select.index(selection_index) + 1}] {selection_index}")
-while True:
-    pick = input("> ")
-    match pick:
-        case "1":
-            ticketreservation()
-        case "2":
-            print("Movies")
-        case "3":
-            print("Cinemas")
-        case "4":
-            print("Trailers")
-        case "5":
-            print("Events & Promos")
-
-
-
