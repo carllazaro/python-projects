@@ -12,9 +12,11 @@ print("Cinema Reservation System")
 print("--------------------------")
 movie = ["Fight Club", "Finding Nemo", "Oppenheimer"]
 cities = ["Los Angeles", "Visakhapatnam", "New York City", "Mumbai", "Toronto", "Atlanta", "Berlin", "Las Vegas", "Manila"]
+theater = ["IMDb", "IMAX", "4DX"]
 
 random_showcase = random.randint(0, 2)
 random_city = random.randint(0, 8)
+random_theater = random.randint(0, 2)
 # --------------------------------------------------------
 
 def ticketreservation():
@@ -60,33 +62,64 @@ def ticketreservation():
     
     print("\n--------| EXIT |----------| EXIT |------")
     print("--------|      |----------|      |------")
+    print("Select theater: ")
+    #AVAILABILITY ISSUE
     while True:
-        confirm = input("Confirm reservation [Y/N]: ").upper()
-        if confirm == "Y":
-            print("Reservation confirmed. Thank you!\n")
-            dashboard()
-            break
-        elif confirm == "N":
-            ticketreservation()
-            break
-        else:
-            continue
-
+        for theater_count in theater:
+            print(f"[{theater.index(theater_count) + 1}] {theater_count}", "Available" if random.getrandbits(1) else "Not Available")
+        if seat_reserve_column in [0, 1]: #C1-C2: Regular price seats
+            print("C1-C2")
+            confirm = input("Confirm reservation [Y/N]: ").upper()
+            if confirm == "Y":
+                print("Reservation confirmed. Thank you!\n")
+                dashboard()
+                break
+            elif confirm == "N":
+                ticketreservation()
+                break
+            else:
+                continue
+            
+        elif seat_reserve_column in [2, 3]: #C3-C4: High price seats/VIP
+            print("C3-C4")
+            confirm = input("Confirm reservation [Y/N]: ").upper()
+            if confirm == "Y":
+                print("Reservation confirmed. Thank you!\n")
+                dashboard()
+                break
+            elif confirm == "N":
+                ticketreservation()
+                break
+            else:
+                continue
+                
+        elif seat_reserve_column in [4, 5]: #C5-C6: Regular but a little bit close to the price of C3-C4 seats
+            print("C5-C6")
+            confirm = input("Confirm reservation [Y/N]: ").upper()
+            if confirm == "Y":
+                print("Reservation confirmed. Thank you!\n")
+                dashboard()
+                break
+            elif confirm == "N":
+                ticketreservation()
+                break
+            else:
+                continue
 #AFTER CONFIRMATION, NEED MAPUNTA SA DASHBOARD TAPOS NAKALAGAY FLASH YUNG NIRESERVE NA TICKET AT SEAT
 #KAILANGAN DIN IINDICATE NUNG USER YUNG MOVIE NA PANONOORIN AT YUNG DATE NA NAKA BASE DUN SA SHOWING
 
 def dashboard():
     print(f"Movie: {movie[random_showcase]}")
     if random_showcase == 0:
-        print("Theater: IMDb")
+        print(f"Theater: {theater[random_theater]}")
         print(f"City: {cities[random_city]}")
         print(f"Date: {random_date}")
     if random_showcase == 1:
-        print("Theater: IMAX")
+        print(f"Theater: {theater[random_theater]}")
         print(f"City: {cities[random_city]}")
         print(f"Date: {random_date}")
     if random_showcase == 2:
-        print("Theater: 4DX")
+        print(f"Theater: {theater[random_theater]}")
         print(f"City: {cities[random_city]}")
         print(f"Date: {random_date}")
     
